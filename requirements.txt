@@ -57,4 +57,4 @@ youtube_search_python
 pyshorteners
 faker
 pyfiglet
-JarvisAPI
+MukeshAPI
