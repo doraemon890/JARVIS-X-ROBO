@@ -769,7 +769,7 @@ dispatcher.add_handler(settings_callback_handler)
 dispatcher.add_handler(migrate_handler)
 dispatcher.add_error_handler(error_callback)
 dispatcher.add_handler(source_callback_handler)
-LOGGER.info("Using long polling.")
+
 updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
 # Check command line arguments for disconnection
