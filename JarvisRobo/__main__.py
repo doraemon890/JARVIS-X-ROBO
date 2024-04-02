@@ -1,4 +1,3 @@
-# <============================================== IMPORTS =========================================================>
 import importlib
 import re
 import time
@@ -46,9 +45,6 @@ from JarvisRobo.modules import ALL_MODULES
 from JarvisRobo.modules.helper_funcs.chat_status import is_user_admin
 from JarvisRobo.modules.helper_funcs.misc import paginate_modules
 
-# <=======================================================================================================>
-
-# <============================================== FUNCTIONS =========================================================>
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -80,20 +76,15 @@ PM_START_TEX = """
 
 
 PM_START_TEXT = """ 
+*ʜᴇʏ* {} , 🥀
 *๏ ɪ'ᴍ {} ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘs!
 ʜɪᴛ ʜᴇʟᴘ ᴛᴏ ғɪɴᴅ ᴏᴜᴛ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ ɪɴ ᴍʏ ғᴜʟʟ ᴘᴏᴛᴇɴᴛɪᴀʟ!*
-➻ ᴛʜᴇ ᴍᴏsᴛ ᴩᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴩ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ ᴡɪᴛʜ sᴏᴍᴇ ᴀᴡᴇsᴏᴍᴇ ᴀɴᴅ ᴜsᴇғᴜʟ ғᴇᴀᴛᴜʀᴇs ✨.
+➻ *ᴛʜᴇ ᴍᴏsᴛ ᴩᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴩ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ  ᴡɪᴛʜ sᴏᴍᴇ ᴀᴡᴇsᴏᴍᴇ ᴀɴᴅ ᴜsᴇғᴜʟ ғᴇᴀᴛᴜʀᴇs.*
 ─────────────────
    *➻ ᴜsᴇʀs »* {}
    *➻ ᴄʜᴀᴛs »* {}
 ─────────────────
 """
-
-START_IMG = [
-    "https://telegra.ph/file/cca68f5b49279dbee536b.jpg",
-    "https://telegra.ph/file/7cf58d5a9fddd72a75867.jpg",
-    "https://telegra.ph/file/61296490da95c55a1d5ee.jpg",
-]
 
 HELP_IMG = [
     "https://telegra.ph/file/61296490da95c55a1d5ee.jpg",
@@ -110,7 +101,7 @@ buttons = [
         InlineKeyboardButton(text="ʜᴇʟᴩ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text="❄ ᴀʙᴏᴜᴛ ❄", callback_data="jarvis_"),
+        InlineKeyboardButton(text="❄ ᴀʙᴏᴜᴛ ❄", callback_data="Jarvis_"),
         InlineKeyboardButton(text="✨ sᴜᴩᴩᴏʀᴛ ✨", url=f"https://t.me/JARVIS_X_SUPPORT"),
     ],
    [
@@ -120,8 +111,7 @@ buttons = [
 ]
 
 HELP_STRINGS = f"""
-» *{BOT_NAME}  ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ ᴀʙᴏᴜᴛ sᴘᴇᴄɪғɪᴄs ᴄᴏᴍᴍᴀɴᴅ*
-"""
+» *{BOT_NAME}  ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ ᴀʙᴏᴜᴛ sᴘᴇᴄɪғɪᴄs ᴄᴏᴍᴍᴀɴᴅ*"""
 
 
 IMPORTED = {}
@@ -183,11 +173,6 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 def start(update: Update, context: CallbackContext):
-    import random  # Importing random within the start function
-
-    def choice(seq):
-        return random.choice(seq)
-
     args = context.args
     global uptime
     uptime = get_readable_time((time.time() - StartTime))
@@ -222,32 +207,35 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            lol = context.bot.send_photo(
-                chat_id=update.effective_chat.id,
-                photo=str(choice(START_IMG)),
-                caption=PM_START_TEX.format(escape_markdown(update.effective_user.first_name)),
-                parse_mode=ParseMode.MARKDOWN,
+            
+            x=update.effective_message.reply_sticker(
+                "CAACAgEAAx0Cfbdm0QACATNmC-1-nl8Unb8cLRS-8qfLllewvwACPwMAAtKbsEQsyzfIkYLVGx4E")
+            x.delete()
+            usr = update.effective_user
+            lol = update.effective_message.reply_text(
+                PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
             )
-            time.sleep(0.2)
-            ayu = context.bot.send_message(update.effective_chat.id, "💻")
-            time.sleep(1.8)
-            context.bot.delete_message(update.effective_chat.id, ayu.message_id)
-            context.bot.send_message(
-                chat_id=update.effective_chat.id,
-                text=PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME, sql.num_users(), sql.num_chats()),
+            time.sleep(0.5)
+            lol.edit_text("💻")
+            time.sleep(0.3)
+            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
+            time.sleep(0.4)
+            lol.delete()
+            
+            update.effective_message.reply_photo(START_IMG,PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
             )
     else:
-        context.bot.send_photo(
-            chat_id=update.effective_chat.id,
-            photo=str(choice(START_IMG)),
+        update.effective_message.reply_photo(
+            START_IMG,
             caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ  !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ​:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
         )
+
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -328,8 +316,10 @@ def help_button(update, context):
             query.message.edit_caption(text,
                 parse_mode=ParseMode.MARKDOWN,
                 
-                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="help_back")]]
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]
+                    ]
                 ),
             )
 
@@ -369,7 +359,7 @@ def help_button(update, context):
 
 def Jarvis_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
-    if query.data == "jarvis_":
+    if query.data == "Jarvis_":
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_caption(f"*ʜᴇʏ,*🥀\n  *ᴛʜɪs ɪs {dispatcher.bot.first_name}*"
             "\n*ᴀ ᴘᴏᴡᴇʀꜰᴜʟ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴜɪʟᴛ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴇᴀꜱɪʟʏ ᴀɴᴅ ᴛᴏ ᴘʀᴏᴛᴇᴄᴛ ʏᴏᴜʀ ɢʀᴏᴜᴘ ꜰʀᴏᴍ ꜱᴄᴀᴍᴍᴇʀꜱ ᴀɴᴅ ꜱᴘᴀᴍᴍᴇʀꜱ.*"
@@ -387,22 +377,23 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
             f"\n\n➻ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ғᴏʀ ɢᴇᴛᴛɪɴɢ ʙᴀsɪᴄ ʜᴇʟᴩ ᴀɴᴅ ɪɴғᴏ ᴀʙᴏᴜᴛ {dispatcher.bot.first_name}.",
             parse_mode=ParseMode.MARKDOWN,
             
-            reply_markup=InlineKeyboardMarkup(
+             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="sᴜᴩᴩᴏʀᴛ", callback_data="Jarvis_support"),
+                        InlineKeyboardButton(text="sᴜᴩᴩᴏʀᴛ", callback_data="jarvis_support"),
                         InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴩᴇʀ", url=f"tg://user?id={OWNER_ID}"),
                     ],
                     [
-                        InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back")
+                        
+                        InlineKeyboardButton(text="ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back"),
                     ],
                     [
-                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="Jarvis_back"),
+                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="jarvis_back"),
                     ],
                 ]
             ),
         )
-    elif query.data == "Jarvis_support":
+    elif query.data == "jarvis_support":
         query.message.edit_caption("**๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ʜᴇʟᴩ ᴀɴᴅ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀ**"
             f"\n\nɪғ ʏᴏᴜ ғᴏᴜɴᴅ ᴀɴʏ ʙᴜɢ ɪɴ {dispatcher.bot.first_name} ᴏʀ ɪғ ʏᴏᴜ ᴡᴀɴɴᴀ ɢɪᴠᴇ ғᴇᴇᴅʙᴀᴄᴋ ᴀʙᴏᴜᴛ ᴛʜᴇ {dispatcher.bot.first_name}, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴀᴛ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ.",
             parse_mode=ParseMode.MARKDOWN,
@@ -425,19 +416,18 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                         ),
                     ],
                     [
-                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="Jarvis_"),
+                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="jarvis_"),
                     ],
                 ]
             ),
         )
-    elif query.data == "Jarvis_back":
+    elif query.data == "jarvis_back":
         first_name = update.effective_user.first_name 
         query.message.edit_caption(PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
             timeout=60,
         )
-
 
 def Source_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
@@ -457,18 +447,18 @@ def Source_about_callback(update: Update, context: CallbackContext):
 *ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ :* [ɢɪᴛʜᴜʙ](https://github.com/doraemon890)
 
 
-{BOT_NAME} ɪs ʟɪᴄᴇɴsᴇᴅ ᴜɴᴅᴇʀ ᴛʜᴇ [ᴍɪᴛ ʟɪᴄᴇɴsᴇ](https://github.com/doraemon890/JARVIS-ROBOT/blob/master/LICENSE).
+{BOT_NAME} ɪs ʟɪᴄᴇɴsᴇᴅ ᴜɴᴅᴇʀ ᴛʜᴇ [ᴍɪᴛ ʟɪᴄᴇɴsᴇ](https://github.com/doraemon890/JARVIS-ROBO/blob/master/LICENSE).
 © 2024 - 2025 | [sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ](https://t.me/{SUPPORT_CHAT}), ᴀʟʟ ʀɪɢʜᴛs ʀᴇsᴇʀᴠᴇᴅ.
 """,
             parse_mode=ParseMode.MARKDOWN,
             
             reply_markup=InlineKeyboardMarkup(
-             [
                 [
-                InlineKeyboardButton(text="sᴏᴜʀᴄᴇ", url="https://github.com/doraemon890")
-                ],
-                [InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="source_back")]
-            ]
+             [
+                 InlineKeyboardButton(text="sᴏᴜʀᴄᴇ", url="https://github.com/doraemon890/JARVIS-ROBO")
+             ],
+                 [InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="source_back")]
+                ]
             ),
         )
     elif query.data == "source_back":
@@ -481,7 +471,6 @@ def Source_about_callback(update: Update, context: CallbackContext):
             
         )
 
-
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
@@ -490,7 +479,7 @@ def get_help(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_photo(HELP_IMG,
+            update.effective_message.reply_photo(START_IMG,
                 f"Contact me in PM to get help of {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -506,7 +495,7 @@ def get_help(update: Update, context: CallbackContext):
                 ),
             )
             return
-        update.effective_message.reply_photo(HELP_IMG,"» Wʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ?.",
+        update.effective_message.reply_photo(START_IMG,"» Wʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ?.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -538,7 +527,7 @@ def get_help(update: Update, context: CallbackContext):
             chat.id,
             text,
             InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="help_back")]]
+                [[InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="help_back"),InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", callback_data="mukesh_support")]]
             ),
         )
 
@@ -676,7 +665,7 @@ def get_settings(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if is_user_admin(chat, user.id):
             text = "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ɢᴇᴛ ᴛʜɪs ᴄʜᴀᴛ's sᴇᴛᴛɪɴɢs ᴀs ᴡᴇʟʟ ᴀs ʏᴏᴜʀs"
-            msg.reply_photo(HELP_IMG,text,
+            msg.reply_photo(START_IMG,text,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -696,8 +685,6 @@ def get_settings(update: Update, context: CallbackContext):
     else:
         send_settings(chat.id, user.id, True)
 
-
-
 def migrate_chats(update: Update, context: CallbackContext):
     msg = update.effective_message  # type: Optional[Message]
     if msg.migrate_to_chat_id:
@@ -715,7 +702,8 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     LOGGER.info("Successfully migrated!")
     raise DispatcherHandlerStop
-    
+
+
 # <=======================================================================================================>
 
 # <=================================================== MAIN ====================================================>
@@ -763,7 +751,7 @@ settings_handler = CommandHandler("settings", get_settings, run_async=True)
 # Define callback query handlers
 help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*", run_async=True)
 settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
-about_callback_handler = CallbackQueryHandler(Jarvis_about_callback, pattern=r"jarvis_", run_async=True)
+about_callback_handler = CallbackQueryHandler(Jarvis_about_callback, pattern=r"Jarvis_", run_async=True)
 source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_", run_async=True)
 
 # Define additional message handler
@@ -779,7 +767,6 @@ dispatcher.add_handler(settings_callback_handler)
 dispatcher.add_handler(migrate_handler)
 dispatcher.add_error_handler(error_callback)
 dispatcher.add_handler(source_callback_handler)
-
 LOGGER.info("Using long polling.")
 updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
