@@ -29,7 +29,7 @@ async def github(_, message):
                 repositories = result["public_repos"]
                 followers = result["followers"]
                 following = result["following"]
-                global Mukesh
+                global Jarvis
                 Jarvis = [[
             InlineKeyboardButton(text="ᴘʀᴏғɪʟᴇ ʟɪɴᴋ", url=url),
             InlineKeyboardButton("Cʟᴏsᴇ",callback_data="close_reply")
