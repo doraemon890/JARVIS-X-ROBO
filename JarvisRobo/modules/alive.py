@@ -1,3 +1,4 @@
+import random
 import asyncio
 from platform import python_version as pyver
 
@@ -32,6 +33,21 @@ Jarvis = [
 @pbot.on_message(filters.command("alive"))
 async def restart(client, m: Message):
     await m.delete()
+    accha = await m.reply("📲")
+    await asyncio.sleep(0.2)
+    await accha.edit("Jᴀʀᴠɪs ᴄᴀᴄʜɪɴɢ ᴅᴀᴛᴀ..")
+    await asyncio.sleep(0.1)
+    await accha.edit("ᴄᴏʀᴇ ᴀɴᴀʟʟʏsᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ...")
+    await asyncio.sleep(0.1)
+    await accha.edit("ᴊᴀʀᴠɪs 🔮 ᴀʟɪᴠɪɴɢ..")
+
+    await accha.delete()
+    await asyncio.sleep(0.3)
+    umm = await m.reply_sticker(
+        "CAACAgEAAx0Cfbdm0QACATVmC-2FuLpqFS0KfIHldXuM8eTtjwACsQQAAsW0uURrdxdu_gmoNh4E"
+    )
+    await umm.delete()
+    await asyncio.sleep(0.2)
     await m.reply_animation(
         random.choice(ALIVE_ANIMATION),
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{BOT_NAME}](f"t.me/{BOT_USERNAME}")』**
