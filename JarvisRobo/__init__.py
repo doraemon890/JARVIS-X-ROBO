@@ -149,7 +149,7 @@ DEV_USERS.add(OWNER_ID)
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
-telethn = TelegramClient("jarvis", API_ID, API_HASH)
+telethn = TelegramClient("managerdb", API_ID, API_HASH)
 
 pbot = Client("JarvisRobo", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN,in_memory=True)
 dispatcher = updater.dispatcher
