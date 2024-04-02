@@ -1,11 +1,11 @@
 import requests
-from .. import pbot as Mukesh,BOT_NAME,BOT_USERNAME
+from .. import pbot as Jarvis,BOT_NAME,BOT_USERNAME
 import time
 from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 from MukeshAPI import api
 
-@jarvis.on_message(filters.command(["chatgpt","ai","ask"],  prefixes=["+", ".", "/", "-", "?", "$","#","&"]))
+@Jarvis.on_message(filters.command(["chatgpt","ai","ask"],  prefixes=["+", ".", "/", "-", "?", "$","#","&"]))
 async def chat_gpt(bot, message):
     
     try:
