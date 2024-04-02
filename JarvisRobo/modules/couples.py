@@ -7,14 +7,12 @@ from pyrogram.enums import ChatType
 from JarvisRobo import pbot
 from JarvisRobo.utils.mongo import get_couple, save_couple
 
-
 # Date and time
 def dt():
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M")
     dt_list = dt_string.split(" ")
     return dt_list
-
 
 def dt_tom():
     a = (
@@ -26,10 +24,23 @@ def dt_tom():
     )
     return a
 
-
 today = str(dt()[0])
 tomorrow = str(dt_tom())
 
+COUPLES_PIC = "https://telegra.ph/file/c54ab3e580000161c07ee.jpg"
+CAP = """
+**ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ :**
+
+{} + {} = 💗
+ɴᴇᴡ ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ ᴄᴀɴ ʙᴇ ᴄʜᴏsᴇɴ ᴀᴛ 12 ᴀᴍ {}
+"""
+
+CAP2 = """
+**ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ :**
+
+{} + {} = 💗
+ɴᴇᴡ ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ ᴄᴀɴ ʙᴇ ᴄʜᴏsᴇɴ ᴀᴛ 12 ᴀᴍ {}
+"""
 
 @pbot.on_message(filters.command(["couple", "couples"]))
 async def couple(_, message):
@@ -52,11 +63,8 @@ async def couple(_, message):
             c1_mention = (await pbot.get_users(c1_id)).mention
             c2_mention = (await pbot.get_users(c2_id)).mention
 
-            couple_selection_message = f"""**ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ :**
-
-{c1_mention} + {c2_mention} = 💗
-ɴᴇᴡ ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ ᴄᴀɴ ʙᴇ ᴄʜᴏsᴇɴ ᴀᴛ 12 ᴀᴍ {tomorrow}"""
-            await pbot.send_message(message.chat.id, text=couple_selection_message)
+            couple_selection_message = CAP.format(c1_mention, c2_mention, tomorrow)
+            await pbot.send_photo(message.chat.id, photo=COUPLES_PIC, caption=couple_selection_message)
             couple = {"c1_id": c1_id, "c2_id": c2_id}
             await save_couple(chat_id, today, couple)
 
@@ -65,15 +73,11 @@ async def couple(_, message):
             c2_id = int(is_selected["c2_id"])
             c1_name = (await pbot.get_users(c1_id)).mention
             c2_name = (await pbot.get_users(c2_id)).mention
-            couple_selection_message = f"""ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ :
-
-{c1_name} + {c2_name} = 💗
-ɴᴇᴡ ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ ᴄᴀɴ ʙᴇ ᴄʜᴏsᴇɴ ᴀᴛ 12 ᴀᴍ {tomorrow}"""
-            await pbot.send_message(message.chat.id, text=couple_selection_message)
+            couple_selection_message = CAP2.format(c1_name, c2_name, tomorrow)
+            await pbot.send_photo(message.chat.id, photo=COUPLES_PIC, caption=couple_selection_message)
     except Exception as e:
         print(e)
-        await message.reply_text(e)
-
+        await message.reply_text(str(e))
 
 __help__ = """
 ᴄʜᴏᴏsᴇ ᴄᴏᴜᴘʟᴇs ɪɴ ʏᴏᴜʀ ᴄʜᴀᴛ
