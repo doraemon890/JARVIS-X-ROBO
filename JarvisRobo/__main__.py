@@ -33,6 +33,7 @@ from JarvisRobo import (
     LOGGER,
     OWNER_ID,
     START_IMG,
+    HELP_IMG,
     SUPPORT_CHAT,
     TOKEN,
     StartTime,
@@ -86,9 +87,6 @@ PM_START_TEXT = """
 ─────────────────
 """
 
-HELP_IMG = [
-    "https://telegra.ph/file/61296490da95c55a1d5ee.jpg",
-]
 
 buttons = [
    [
