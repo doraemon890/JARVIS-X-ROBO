@@ -6,7 +6,7 @@ from telegram import TelegramError, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
 import JarvisRobo.modules.no_sql.users_db as user_db 
-from JarvisRobo import pbot as Mukesh
+from JarvisRobo import pbot as Jarvis
 from JarvisRobo import DEV_USERS, LOGGER as  logger, OWNER_ID, dispatcher
 from JarvisRobo.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from JarvisRobo.modules.no_sql.users_db import get_all_users
@@ -56,7 +56,7 @@ def get_user_id(username):
 
 
 @dev_plus
-@Mukesh.on_message(filters.command(["bchat","broadcastgroups"]) & filters.user(OWNER_ID) & filters.reply)
+@Jarvis.on_message(filters.command(["bchat","broadcastgroups"]) & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
     all_chats = user_db.get_all_chats() or []
     await bot.send_message(
@@ -113,7 +113,7 @@ async def send_chat(chat_id, message):
 
 @dev_plus
 # broadcast
-@Mukesh.on_message(filters.command(["buser","broadcastusers"]) & filters.user(OWNER_ID) & filters.reply)
+@Jarvis.on_message(filters.command(["buser","broadcastusers"]) & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
     all_users = get_all_users()
     await bot.send_message(
