@@ -2,20 +2,24 @@ import random
 import asyncio
 from platform import python_version as pyver
 
-from pyrogram import __version__ as pver
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram import (
+    __version__ as pver,
+    filters,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+)
+from pyrogram.types import Message
 from telegram import __version__ as lver
 from telethon import __version__ as tver
 
-from JarvisRobo import SUPPORT_CHAT, pbot,BOT_USERNAME, OWNER_ID,BOT_NAME,START_IMG
+from JarvisRobo import SUPPORT_CHAT, pbot, BOT_USERNAME, OWNER_ID, BOT_NAME, START_IMG
 
 VID = [
-     "https://graph.org/file/c3b6db252f9b089a7d14a.mp4",
-     "https://graph.org/file/b28f15902589c079f5f79.mp4",
+    "https://graph.org/file/c3b6db252f9b089a7d14a.mp4",
+    "https://graph.org/file/b28f15902589c079f5f79.mp4",
 ]
 
-Jarvis = [
+Jarvis_buttons = [
     [
         InlineKeyboardButton(text="ᴊᴀʀᴠɪs", user_id=OWNER_ID),
         InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"),
@@ -29,7 +33,6 @@ Jarvis = [
 ]
 
 
-
 @pbot.on_message(filters.command("alive"))
 async def restart(client, m: Message):
     await m.delete()
@@ -37,7 +40,7 @@ async def restart(client, m: Message):
     await asyncio.sleep(0.2)
     await accha.edit("Jᴀʀᴠɪs ᴄᴀᴄʜɪɴɢ ᴅᴀᴛᴀ..")
     await asyncio.sleep(0.1)
-    await accha.edit("ᴄᴏʀᴇ ᴀɴᴀʟʟʏsᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ...")
+    await accha.edit("ᴄᴏʀᴇ ᴀɴᴀʟʏsᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ...")
     await asyncio.sleep(0.1)
     await accha.edit("ᴊᴀʀᴠɪs 🔮 ᴀʟɪᴠɪɴɢ..")
 
@@ -51,16 +54,16 @@ async def restart(client, m: Message):
     await m.reply_video(
         random.choice(VID),
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{BOT_NAME}](f"t.me/{BOT_USERNAME}")』**
-   ━━━━━━━━━━━━━━━━━━━
-  » **ᴍʏ ᴏᴡɴᴇʀ :** [ᴏᴡɴᴇʀ](tg://user?id={OWNER_ID})
-  
-  » **ʟɪʙʀᴀʀʏ ᴠᴇʀsɪᴏɴ :** `{lver}`
-  
-  » **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{tver}`
-  
-  » **ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ :** `{pver}`
-  
-  » **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{pyver()}`
-   ━━━━━━━━━━━━━━━━━━━""",
-        reply_markup=InlineKeyboardMarkup(Jarvis),
+━━━━━━━━━━━━━━━━━━━
+» **ᴍʏ ᴏᴡɴᴇʀ :** [ᴏᴡɴᴇʀ](tg://user?id={OWNER_ID})
+
+» **ʟɪʙʀᴀʀʏ ᴠᴇʀsɪᴏɴ :** `{lver}`
+
+» **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{tver}`
+
+» **ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ :** `{pver}`
+
+» **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{pyver()}`
+━━━━━━━━━━━━━━━━━━━""",
+        reply_markup=InlineKeyboardMarkup(Jarvis_buttons),
     )
