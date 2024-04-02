@@ -1,6 +1,6 @@
-from JarvisRobo.modules.no_sql import Mukeshdb
+from JarvisRobo.modules.no_sql import Jarvisdb
 
-afkdb = Mukeshdb.afk
+afkdb = Jarvisdb.afk
 
 
 async def is_afk(user_id: int) -> bool:
