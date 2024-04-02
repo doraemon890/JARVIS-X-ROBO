@@ -2,16 +2,11 @@ import random
 import asyncio
 from platform import python_version as pyver
 
-from pyrogram import (
-    __version__ as pver,
-    filters,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-)
-from pyrogram.types import Message
+from pyrogram import __version__ as pver
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from telegram import __version__ as lver
 from telethon import __version__ as tver
-
 from JarvisRobo import SUPPORT_CHAT, pbot, BOT_USERNAME, OWNER_ID, BOT_NAME, START_IMG
 
 VID = [
