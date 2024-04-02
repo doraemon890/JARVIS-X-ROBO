@@ -9,7 +9,7 @@ from JarvisRobo.utils.errors import capture_err
 @capture_err
 async def github(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("/github {username} \n`/github Noob-Mukesh`")
+        return await message.reply_text("/github {username} \n`/github doraemon890`")
     username = message.text.split(None, 1)[1]
     URL = f"https://api.github.com/users/{username}"
     async with ClientSession() as session:
