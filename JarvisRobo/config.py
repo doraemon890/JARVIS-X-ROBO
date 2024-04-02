@@ -12,9 +12,9 @@ class Config(object):
     SUPPORT_CHAT = "Chatting_2024"  # Your own group for support, do not add the @
     START_IMG = ""
     EVENT_LOGS = ()  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
-    MONGO_DB_URI= ""
+    MONGO_DB_URI= "mongodb+srv://MANAGERDB:RAJNISHAYUSHI@managerdb.lfnlzdk.mongodb.net/?retryWrites=true&w=majority&appName=managerdb"
     # RECOMMENDED
-    DATABASE_URL = ""  # A sql database url from elephantsql.com
+    DATABASE_URL = "postgres://iotyyhip:yWCDBqU7tEBX623VGQBnWcpr4tNLSsHp@kiouni.db.elephantsql.com/iotyyhip"  # A sql database url from elephantsql.com
     CASH_API_KEY = (
         " X652FNVGJ0ZXABM0"  # Get your API key from https://www.alphavantage.co/support/#api-key
     )
