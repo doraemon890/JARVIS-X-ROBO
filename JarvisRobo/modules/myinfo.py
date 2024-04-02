@@ -11,11 +11,11 @@ from JarvisRobo.events import register
 
 edit_time = 5
 f""" ======================={BOT_NAME}====================== """
-file1 = "https://telegra.ph/file/9a85d0a873e2dd80d278d.jpg"
-file2 = "https://telegra.ph/file/9e7815284031452afa9e5.jpg"
-file3 = "https://telegra.ph/file/dcc5e003287f69acea368.jpg"
-file4 = "https://telegra.ph/file/ed1ce7fee94f46b0f671e.jpg"
-file5 = "https://telegra.ph/file/701028ce085ecfa961a36.jpg"
+file1 = "https://telegra.ph/file/0e7c686e3b38f3339b47b.jpg"
+file2 = "https://telegra.ph/file/32817973029f5fd59df31.jpg"
+file3 = "https://telegra.ph/file/304d41760726da38be5b0.jpg"
+file4 = "https://telegra.ph/file/f5a7995930e8921c2ab4b.jpg"
+file5 = "https://telegra.ph/file/f41322f5d12c95bfb86ea.jpg"
 """ ======================={BOT_NAME}====================== """
 
 
