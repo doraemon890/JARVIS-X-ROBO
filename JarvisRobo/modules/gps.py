@@ -2,11 +2,12 @@ from pyrogram import  enums, filters, idle
 from pyrogram.types import InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM
 from requests import get
 import asyncio
-from JarvisRobo import pbot as mukesh
+from JarvisRobo import pbot as jarvis
 from pyrogram.handlers import MessageHandler
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
-@mukesh.on_message(filters.command(["gps"]))
+
+@jarvis.on_message(filters.command(["gps"]))
 async def gps(bot, message):
 #     await message.delete()
     if len(message.command) < 2:
@@ -18,10 +19,10 @@ async def gps(bot, message):
     try:
         
         """
-        ---------github :-NOOB-MUKESH -----
-        ---------telegram : @itz_legend_coder-----
+        ---------github :doraemon890 -----
+        ---------telegram : @JARVIS_V2-----
         """
-        geolocator = Nominatim(user_agent="legend-Mukesh")
+        geolocator = Nominatim(user_agent="legend-jarvis")
 #         zoom=[0-18]
 
 
@@ -47,7 +48,7 @@ async def gps(bot, message):
         await message.reply_venue(latitude, longitude,f"{city}",f"{state} ,{country}",reply_markup=IKM(url))
     except Exception as e:
         await message.reply_text(f"I can't find that \nDue to {e}")
-@mukesh.on_message(filters.command(["distance"]))
+@jarvis.on_message(filters.command(["distance"]))
 async def distance(bot, message):
     await message.delete()
     if len(message.command) < 2:
@@ -63,8 +64,8 @@ async def distance(bot, message):
     try:
 
         """
-        ---------github :-NOOB-MUKESH -----
-        ---------telegram : @itz_legend_coder-----
+        ---------github :doraemon890 -----
+        ---------telegram : @JARVIS_V2-----
         """
         distance=(great_circle(x,y).miles)
 
@@ -73,8 +74,8 @@ async def distance(bot, message):
     except Exception as e:
         await message.reply_text(f"I can't find that \nDue to {e}")
         
-# mukesh.add_handler(MessageHandler(gps))     
-# mukesh.add_handler(MessageHandler(distance))
+# jarvis.add_handler(MessageHandler(gps))     
+# jarvis.add_handler(MessageHandler(distance))
 
 __help__ = """
 sᴇɴᴅs ʏᴏᴜ ᴛʜᴇ ɢᴘs ʟᴏᴄᴀᴛɪᴏɴ ᴏғ ᴛʜᴇ ɢɪᴠᴇɴ ǫᴜᴇʀʏ...
