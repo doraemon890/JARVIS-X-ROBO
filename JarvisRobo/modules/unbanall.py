@@ -18,7 +18,7 @@ from JarvisRobo import *
 from JarvisRobo import LOGGER
 from JarvisRobo.events import register
 
-BOT_ID = 5285688815
+BOT_ID = 6856576029
 CMD_HELP = "/ !"
 
 
