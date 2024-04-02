@@ -3,14 +3,15 @@ from pyrogram import Client, enums, filters, idle
 import re
 from requests import get
 import asyncio
-from JarvisRobo import pbot as mukesh
+from JarvisRobo import pbot as jarvis
 
 from pyrogram.types import InlineKeyboardButton as ikb, InlineKeyboardMarkup as ikm, Message
 from pyrogram.enums import ChatAction, ParseMode
 import pyshorteners
 shortener = pyshorteners.Shortener()
 from pyrogram.handlers import MessageHandler
-@mukesh.on_message(filters.command(["short"]))
+
+@jarvis.on_message(filters.command(["short"]))
 async def short_urls(bot, message):
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     if len(message.command) < 2:
@@ -47,7 +48,7 @@ async def short_urls(bot, message):
     except Exception as e:
         await message.reply_text(f"Either the link is already shortened or is invalid.")
 
-@mukesh.on_message(filters.command(["unshort"]))
+@jarvis.on_message(filters.command(["unshort"]))
 async def unshort(bot, message):
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     if len(message.command) < 2:
@@ -78,8 +79,7 @@ async def unshort(bot, message):
     except Exception as e:
 
         await message.reply_text(f"ᴇʀʀᴏʀ:    {e} ")
-# mukesh.add_handler(MessageHandler(short_urls))
-# mukesh.add_handler(MessageHandler(unshort))
+
 __help__ = """
 ᴍᴀᴋᴇ sʜᴏʀᴛs ᴏғ ᴀ ɢɪᴠᴇɴ ʟɪɴᴋ 
  ❍ /short <url>  *:Example `/short https://t.me/mr_sukkun`.
