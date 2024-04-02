@@ -217,29 +217,33 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            lol = await message.reply_photo(
+            lol = context.bot.send_photo(
+                chat_id=update.effective_chat.id,
                 photo=str(choice(START_IMG)),
-                caption=PM_START_TEX.format(escape_markdown(usr.first_name)),
+                caption=PM_START_TEX.format(escape_markdown(update.effective_user.first_name)),
                 parse_mode=ParseMode.MARKDOWN,
             )
-            await asyncio.sleep(0.2)
-            ayu = await update.effective_message.reply_text("💻")
-            await asyncio.sleep(1.8)
-            await ayu.delete()
-            await update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
+            time.sleep(0.2)
+            ayu = context.bot.send_message(update.effective_chat.id, "💻")
+            time.sleep(1.8)
+            context.bot.delete_message(update.effective_chat.id, ayu.message_id)
+            context.bot.send_message(
+                chat_id=update.effective_chat.id,
+                text=PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME, sql.num_users(), sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
             )
     else:
-        update.effective_message.reply_photo(
+        context.bot.send_photo(
+            chat_id=update.effective_chat.id,
             photo=str(choice(START_IMG)),
             caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ  !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ​:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
         )
+
 
 
 def error_handler(update, context):
