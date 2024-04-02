@@ -770,15 +770,20 @@ dispatcher.add_handler(migrate_handler)
 dispatcher.add_error_handler(error_callback)
 dispatcher.add_handler(source_callback_handler)
 
- LOGGER.info("Using long polling.")
-    updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+# Log message
+LOGGER.info("Using long polling.")
 
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
+# Start polling with specified parameters
+updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
-    updater.idle()
+# Check command line arguments
+if len(argv) not in (1, 3, 4):
+    telethn.disconnect()
+else:
+    telethn.run_until_disconnected()
+
+# Keep updater idle
+updater.idle()
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
