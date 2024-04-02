@@ -30,7 +30,7 @@ async def github(_, message):
                 followers = result["followers"]
                 following = result["following"]
                 global Mukesh
-                Mukesh = [[
+                Jarvis = [[
             InlineKeyboardButton(text="ᴘʀᴏғɪʟᴇ ʟɪɴᴋ", url=url),
             InlineKeyboardButton("Cʟᴏsᴇ",callback_data="close_reply")
             ]]     
@@ -47,7 +47,7 @@ async def github(_, message):
             except Exception as e:
                 await message.reply(f"#ERROR {e}")
                   
-    await message.reply_photo(photo=avatar_url, caption=caption,reply_markup=InlineKeyboardMarkup(Mukesh))
+    await message.reply_photo(photo=avatar_url, caption=caption,reply_markup=InlineKeyboardMarkup(Jarvis))
 
 
 __mod_name__ = "Gɪᴛʜᴜʙ"
