@@ -6,15 +6,15 @@ from telethon.tl.functions.channels import GetParticipantRequest
 from JarvisRobo import BOT_ID
 from JarvisRobo import DRAGONS as DEVS
 from JarvisRobo import OWNER_ID
-from JarvisRobo import telethn as Mukesh
-from JarvisRobo.events import Mukeshinline
-from JarvisRobo.events import register as Mukeshbot
+from JarvisRobo import telethn as Jarvis
+from JarvisRobo.events import Jarvisinline
+from JarvisRobo.events import register as Jarvisbot
 from JarvisRobo.modules.no_sql import fsub_db as db
 
 
 async def is_admin(chat_id, user_id):
     try:
-        p = await Mukesh(GetParticipantRequest(chat_id, user_id))
+        p = await Jarvis(GetParticipantRequest(chat_id, user_id))
     except UserNotParticipantError:
         return False
     if isinstance(p.participant, types.ChannelParticipantAdmin) or isinstance(
@@ -27,7 +27,7 @@ async def is_admin(chat_id, user_id):
 
 async def participant_check(channel, user_id):
     try:
-        await Mukesh(GetParticipantRequest(channel, int(user_id)))
+        await Jarvis(GetParticipantRequest(channel, int(user_id)))
         return True
     except UserNotParticipantError:
         return False
@@ -35,7 +35,7 @@ async def participant_check(channel, user_id):
         return False
 
 
-@Mukeshbot(pattern="^/(fsub|Fsub|forcesubscribe|Forcesub|forcesub|Forcesubscribe) ?(.*)")
+@Jarvisbot(pattern="^/(fsub|Fsub|forcesubscribe|Forcesub|forcesub|Forcesubscribe) ?(.*)")
 async def fsub(event):
     if event.is_private:
         return
@@ -90,7 +90,7 @@ async def fsub(event):
         await event.reply(f"✅ **ғᴏʀᴄᴇ sᴜʙsᴄʀɪʙᴇ ɪs ᴇɴᴀʙʟᴇᴅ** to @{channel}.")
 
 
-@Mukesh.on(events.NewMessage())
+@Jarvis.on(events.NewMessage())
 async def fsub_n(e):
     if not db.fs_settings(e.chat_id):
         return
@@ -123,7 +123,7 @@ async def fsub_n(e):
         await e.client.edit_permissions(e.chat_id, e.sender_id, send_messages=False)
 
 
-@Mukeshinline(pattern=r"fs(\_(.*))")
+@Jarvisinline(pattern=r"fs(\_(.*))")
 async def unmute_fsub(event):
     user_id = int(((event.pattern_match.group(1)).decode()).split("_", 1)[1])
     if not event.sender_id == user_id:
@@ -150,12 +150,12 @@ __mod_name__ = "F-sᴜʙ"
 __help__="""
 *ғᴏʀᴄᴇ ꜱᴜʙꜱᴄʀɪʙᴇ:*
 
-   •➥ *ᴍᴜᴋᴇsʜʀᴏʙᴏᴛ ᴄᴀɴ ᴍᴜᴛᴇ ᴍᴇᴍʙᴇʀꜱ ᴡʜᴏ ᴀʀᴇ ɴᴏᴛ ꜱᴜʙꜱᴄʀɪʙᴇᴅ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴜɴᴛɪʟ ᴛʜᴇʏ ꜱᴜʙꜱᴄʀɪʙᴇ*
+   •➥ *ᴊᴀʀᴠɪsʀᴏʙᴏᴛ ᴄᴀɴ ᴍᴜᴛᴇ ᴍᴇᴍʙᴇʀꜱ ᴡʜᴏ ᴀʀᴇ ɴᴏᴛ ꜱᴜʙꜱᴄʀɪʙᴇᴅ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴜɴᴛɪʟ ᴛʜᴇʏ ꜱᴜʙꜱᴄʀɪʙᴇ*
    •➥ ᴡʜᴇɴ ᴇɴᴀʙʟᴇᴅ ɪ ᴡɪʟʟ ᴍᴜᴛᴇ ᴜɴꜱᴜʙꜱᴄʀɪʙᴇᴅ ᴍᴇᴍʙᴇʀꜱ ᴀɴᴅ ꜱʜᴏᴡ ᴛʜᴇᴍ ᴀ ᴜɴᴍᴜᴛᴇ ʙᴜᴛᴛᴏɴ. ᴡʜᴇɴ ᴛʜᴇʏ ᴘʀᴇꜱꜱᴇᴅ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ɪ ᴡɪʟʟ ᴜɴᴍᴜᴛᴇ ᴛʜᴇᴍ
 
    •➥ *ꜱᴇᴛᴜᴘ*
-   •➥ [ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀꜱ ᴀᴅᴍɪɴ](https://t.me/groupcontrollertgbot?startgroup=new)
-   •➥ [ᴀᴅᴅ ᴍᴇ ɪɴ your ᴄʜᴀɴɴᴇʟ ᴀꜱ ᴀᴅᴍɪɴ](https://t.me/groupcontrollertgbot?startgroup=new)
+   •➥ [ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀꜱ ᴀᴅᴍɪɴ](https://t.me/JARVIS_N_ROBOT?startgroup=new)
+   •➥ [ᴀᴅᴅ ᴍᴇ ɪɴ your ᴄʜᴀɴɴᴇʟ ᴀꜱ ᴀᴅᴍɪɴ](https://t.me/JARVIS_N_ROBOT?startgroup=new)
  
     *ᴄᴏᴍᴍᴍᴀɴᴅꜱ*
    •➥ /fsub channel username - ᴛᴏ ᴛᴜʀɴ ᴏɴ ᴀɴᴅ sᴇᴛᴜᴘ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ.
