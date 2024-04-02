@@ -10,7 +10,7 @@ from telethon import __version__ as tver
 
 from JarvisRobo import SUPPORT_CHAT, pbot,BOT_USERNAME, OWNER_ID,BOT_NAME,START_IMG
 
-ALIVE_ANIMATION = [
+VID = [
      "https://graph.org/file/c3b6db252f9b089a7d14a.mp4",
      "https://graph.org/file/b28f15902589c079f5f79.mp4",
 ]
@@ -48,8 +48,8 @@ async def restart(client, m: Message):
     )
     await umm.delete()
     await asyncio.sleep(0.2)
-    await m.reply_animation(
-        random.choice(ALIVE_ANIMATION),
+    await m.reply_video(
+        random.choice(VID),
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{BOT_NAME}](f"t.me/{BOT_USERNAME}")』**
    ━━━━━━━━━━━━━━━━━━━
   » **ᴍʏ ᴏᴡɴᴇʀ :** [ᴏᴡɴᴇʀ](tg://user?id={OWNER_ID})
