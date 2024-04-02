@@ -226,7 +226,7 @@ def start(update: Update, context: CallbackContext):
             ayu = await update.effective_message.reply_text("💻")
             await asyncio.sleep(1.8)
             await ayu.delete()
-           await update.effective_message.reply_text(
+            await update.effective_message.reply_text(
                 PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
