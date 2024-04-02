@@ -760,7 +760,7 @@ settings_handler = CommandHandler("settings", get_settings, run_async=True)
 # Define callback query handlers
 help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*", run_async=True)
 settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
-about_callback_handler = CallbackQueryHandler(jarvis_about_callback, pattern=r"jarvis_", run_async=True)
+about_callback_handler = CallbackQueryHandler(Jarvis_about_callback, pattern=r"jarvis_", run_async=True)
 source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_", run_async=True)
 
 # Define additional message handler
