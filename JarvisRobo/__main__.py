@@ -748,49 +748,41 @@ def main():
         except BadRequest as e:
             LOGGER.warning(e.message)
 
-   # Define command handlers
+# Define command handlers
 start_handler = CommandHandler("start", start, run_async=True)
 help_handler = CommandHandler("help", get_help, run_async=True)
 settings_handler = CommandHandler("settings", get_settings, run_async=True)
 
 # Define callback query handlers
-help_callback_handler = CallbackQueryHandler(
-    help_button, pattern=r"help_.*", run_async=True
-)
-settings_callback_handler = CallbackQueryHandler(
-    settings_button, pattern=r"stngs_", run_async=True
-)
-about_callback_handler = CallbackQueryHandler(
-    jarvis_about_callback, pattern=r"jarvis_", run_async=True
-)
-source_callback_handler = CallbackQueryHandler(
-    Source_about_callback, pattern=r"source_", run_async=True
-)
+help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*", run_async=True)
+settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
+about_callback_handler = CallbackQueryHandler(jarvis_about_callback, pattern=r"jarvis_", run_async=True)
+source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_", run_async=True)
 
 # Define additional message handler
 migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
+# Add handlers to dispatcher
+dispatcher.add_handler(start_handler)
+dispatcher.add_handler(help_handler)
+dispatcher.add_handler(about_callback_handler)
+dispatcher.add_handler(settings_handler)
+dispatcher.add_handler(help_callback_handler)
+dispatcher.add_handler(settings_callback_handler)
+dispatcher.add_handler(migrate_handler)
+dispatcher.add_error_handler(error_callback)
+dispatcher.add_handler(source_callback_handler)
 
-    dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(help_handler)
-    dispatcher.add_handler(about_callback_handler)
-    dispatcher.add_handler(settings_handler)
-    dispatcher.add_handler(help_callback_handler)
-    dispatcher.add_handler(settings_callback_handler)
-    dispatcher.add_handler(migrate_handler)
-    dispatcher.add_error_handler(error_callback)
-    dispatcher.add_handler(source_callback_handler)
+LOGGER.info("Using long polling.")
+updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
-    LOGGER.info("Using long polling.")
-    updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+# Check command line arguments for disconnection
+if len(argv) not in (1, 3, 4):
+    telethn.disconnect()
+else:
+    telethn.run_until_disconnected()
 
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
-
-    updater.idle()
-
+updater.idle()
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
