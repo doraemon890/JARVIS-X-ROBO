@@ -1,4 +1,3 @@
-import random
 import asyncio
 from platform import python_version as pyver
 
