@@ -14,7 +14,7 @@ VID = [
     "https://graph.org/file/b28f15902589c079f5f79.mp4",
 ]
 
-Jarvis_buttons = [
+Jarvis = [
     [
         InlineKeyboardButton(text="ᴊᴀʀᴠɪs", user_id=OWNER_ID),
         InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"),
@@ -60,5 +60,5 @@ async def restart(client, m: Message):
 
 » **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{pyver()}`
 ━━━━━━━━━━━━━━━━━━━""",
-        reply_markup=InlineKeyboardMarkup(Jarvis_buttons),
+        reply_markup=InlineKeyboardMarkup(Jarvis),
     )
