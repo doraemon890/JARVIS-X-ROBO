@@ -957,7 +957,7 @@ dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
 
 __mod_name__ = "Aᴅᴍɪɴs"
 __command_list__ = [
-    "setdesc", "setsticker", "setgpic", "delgpic", "setgtitle", "adminlist",
+    "setdesc" "setsticker" "setgpic" "delgpic" "setgtitle" "adminlist",
     "admins",
     "invitelink",
     "promote",
@@ -966,7 +966,6 @@ __command_list__ = [
     "demote",
     "admincache",
 ]
-
 __handlers__ = [
     SET_DESC_HANDLER,
     SET_STICKER_HANDLER,
