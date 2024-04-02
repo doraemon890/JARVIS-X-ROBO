@@ -1,8 +1,8 @@
 import requests
-from JarvisRobo import pbot as mukesh
+from JarvisRobo import pbot as jarvis
 from pyrogram import filters
 
-@mukesh.on_message(filters.command("hastag"))
+@jarvis.on_message(filters.command("hastag"))
 async def hastag(bot, message):
     
     try:
