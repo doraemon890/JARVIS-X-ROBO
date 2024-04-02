@@ -4,28 +4,28 @@ from pymongo import MongoClient, collection
 from JarvisRobo import  MONGO_DB_URI
 
 mongo = MongoCli(MONGO_DB_URI)
-Mukeshdb = mongo.MUK_ROB
+Jarvisdb = mongo.MUK_ROB
 
 try:
     client = MongoClient(MONGO_DB_URI)
 except PyMongoError:
     exiter(1)
-main_db = client["MUKESH_ROBOT"]
+main_db = client["JARVIS_ROBOT"]
 
 
-MukeshXdb = main_db
+JarvisXdb = main_db
 
 
 def get_collection(name: str) -> collection:
     """ɢᴇᴛ ᴛʜᴇ ᴄᴏʟʟᴇᴄᴛɪᴏɴ ғʀᴏᴍ ᴅᴀᴛᴀʙᴀsᴇ."""
-    return MukeshXdb[name]
+    return JarvisXdb[name]
 
 
 class MongoDB:
     """Class for interacting with Bot database."""
 
     def __init__(self, collection) -> None:
-        self.collection = MukeshXdb[collection]
+        self.collection = JarvisXdb[collection]
 
     # Insert one entry into collection
     def insert_one(self, document):
