@@ -183,6 +183,9 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 def start(update: Update, context: CallbackContext):
+    def choice(seq):
+        return random.choice(seq)
+
     args = context.args
     global uptime
     uptime = get_readable_time((time.time() - StartTime))
