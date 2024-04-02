@@ -1,14 +1,14 @@
 {
     "name": "Jarvis Robot",
-    "description": "Telegram Group Management Bot.",
-    "logo": "https://te.legra.ph/file/49c43e6fc856534a09853.jpg",
+    "description": "A Telegram Group Management RoBot.",
+    "logo": "https://telegra.ph/file/64dcb13558013d1e567c6.jpg"",
     "keywords": [
        "telegram",
        "modular",
        "group",
        "manager"
     ],   
- "repository": "https://github.com/doraemon890/JarvisRobo",
+ "repository": "https://github.com/doraemon890/JARVIS-X-ROBO",
  "stack": "heroku-22",
  "addons": [
     {
