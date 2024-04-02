@@ -29,16 +29,16 @@ from MukeshAPI import api
 
 @user_admin_no_reply
 @gloggable
-def mukeshrm(update: Update, context: CallbackContext) -> str:
+def jarvisrm(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     match = re.match(r"rm_chat\((.+?)\)", query.data)
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
-        is_mukesh = sql.set_mukesh(chat.id)
-        if is_mukesh:
-            is_mukesh = sql.set_mukesh(user_id)
+        is_jarvis = sql.set_jarvis(chat.id)
+        if is_jarvis:
+            is_jarvis = sql.set_jarvis(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"ᴀɪ ᴅɪꜱᴀʙʟᴇᴅ\n"
@@ -57,16 +57,16 @@ def mukeshrm(update: Update, context: CallbackContext) -> str:
 
 @user_admin_no_reply
 @gloggable
-def mukeshadd(update: Update, context: CallbackContext) -> str:
+def jarvisadd(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     match = re.match(r"add_chat\((.+?)\)", query.data)
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
-        is_mukesh = sql.rem_mukesh(chat.id)
-        if is_mukesh:
-            is_mukesh = sql.rem_mukesh(user_id)
+        is_jarvis = sql.rem_jarvis(chat.id)
+        if is_jarvis:
+            is_jarvis = sql.rem_jarvis(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"ᴀɪ ᴇɴᴀʙʟᴇ\n"
@@ -85,7 +85,7 @@ def mukeshadd(update: Update, context: CallbackContext) -> str:
 
 @user_admin
 @gloggable
-def mukesh(update: Update, context: CallbackContext):
+def jarvis(update: Update, context: CallbackContext):
     message = update.effective_message
     msg = "• ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ"
     keyboard = InlineKeyboardMarkup(
@@ -103,9 +103,9 @@ def mukesh(update: Update, context: CallbackContext):
     )
 
 
-def mukesh_message(context: CallbackContext, message):
+def jarvis_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "mukesh":
+    if message.text.lower() == "jarvis":
         return True
     elif BOT_USERNAME in message.text.upper():
         return True
@@ -120,12 +120,12 @@ def chatbot(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
-    is_mukesh = sql.is_mukesh(chat_id)
-    if is_mukesh:
+    is_jarvis = sql.is_jarvis(chat_id)
+    if is_jarvis:
         return
 
     if message.text and not message.document:
-        if not mukesh_message(context, message):
+        if not jarvis_message(context, message):
             return
         bot.send_chat_action(chat_id, action="typing")
         url=api.chatgpt(message.text,mode="gf")["results"]
@@ -137,9 +137,9 @@ def chatbot(update: Update, context: CallbackContext):
 
 
 
-CHATBOTK_HANDLER = CommandHandler("chatbot", mukesh, run_async=True)
-ADD_CHAT_HANDLER = CallbackQueryHandler(mukeshadd, pattern=r"add_chat", run_async=True)
-RM_CHAT_HANDLER = CallbackQueryHandler(mukeshrm, pattern=r"rm_chat", run_async=True)
+CHATBOTK_HANDLER = CommandHandler("chatbot", jarvis, run_async=True)
+ADD_CHAT_HANDLER = CallbackQueryHandler(jarvisadd, pattern=r"add_chat", run_async=True)
+RM_CHAT_HANDLER = CallbackQueryHandler(jarvisrm, pattern=r"rm_chat", run_async=True)
 CHATBOT_HANDLER = MessageHandler(
     Filters.text
     & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!") & ~Filters.regex(r"^\/")),
