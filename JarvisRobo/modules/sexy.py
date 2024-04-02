@@ -5,13 +5,14 @@ from telethon import Button, events
 from .. import telethn as asst, SUPPORT_CHAT as c
 
 BUTTON = [[Button.url("🍒 ꜱᴜᴘᴘᴏʀᴛ 🍒", f"https://t.me/{c}")]]
-HOT = "https://telegra.ph/file/daad931db960ea40c0fca.gif"
-SMEXY = "https://telegra.ph/file/a23e9fd851fb6bc771686.gif"
-LEZBIAN = "https://telegra.ph/file/5609b87f0bd461fc36acb.gif"
-BIGBALL = "https://i.gifer.com/8ZUg.gif"
+HOT = "https://graph.org/file/745ba3ff07c1270958588.mp4"
+SMEXY = "https://graph.org/file/58da22eb737af2f8963e6.mp4"
+LEZBIAN = "https://graph.org/file/ff258085cf31f5385db8a.mp4"
+BIGBALL ="https://i.gifer.com/8ZUg.gif"
 LANG = "https://telegra.ph/file/423414459345bf18310f5.gif"
-CUTIE = "https://64.media.tumblr.com/d701f53eb5681e87a957a547980371d2/tumblr_nbjmdrQyje1qa94xto1_500.gif"
-
+CUTIE = "https://graph.org/file/24375c6e54609c0e4621c.mp4"
+HORNE = "https://graph.org/file/eaa834a1cbfad29bd1fe4.mp4"
+GAYE = "https://graph.org/file/850290f1f974c5421ce54.mp4"
 
 @asst.on(events.NewMessage(pattern="/horny ?(.*)"))
 async def horny(e):
@@ -20,7 +21,7 @@ async def horny(e):
     mention = f"[{user_name}](tg://user?id={str(user_id)})"
     mm = random.randint(1, 100)
     HORNY = f"**🔥** {mention} **ɪꜱ** {mm}**% ʜᴏʀɴʏ!**"
-    await e.reply(HORNY, buttons=BUTTON, file=HOT)
+    await e.reply(HORNY, buttons=BUTTON, file=HORNE)
 
 
 @asst.on(events.NewMessage(pattern="/gay ?(.*)"))
@@ -30,7 +31,7 @@ async def gay(e):
     mention = f"[{user_name}](tg://user?id={str(user_id)})"
     mm = random.randint(1, 100)
     GAY = f"**🍷** {mention} **ɪꜱ** {mm}**% ɢᴀʏ!**"
-    await e.reply(GAY, buttons=BUTTON, file=SMEXY)
+    await e.reply(GAY, buttons=BUTTON, file=GAYE)
 
 
 @asst.on(events.NewMessage(pattern="/lezbian ?(.*)"))
