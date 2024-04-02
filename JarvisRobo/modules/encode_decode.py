@@ -4,7 +4,7 @@ import time
 from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 
-@jarvis.on_message(filters.command(["password"]))
+@Jarvis.on_message(filters.command(["password"]))
 async def passwordgen(bot, message):
     
     try:
@@ -22,7 +22,7 @@ async def passwordgen(bot, message):
     except Exception as e:
         await message.reply_text(f"**ᴇʀʀᴏʀ: {e} ")
         
-@jarvis.on_message(filters.command(["morseencode"]))
+@Jarvis.on_message(filters.command(["morseencode"]))
 async def morse_en(bot, message):
     
     try:
@@ -40,7 +40,7 @@ async def morse_en(bot, message):
     except Exception as e:
         await message.reply_text(f"**ᴇʀʀᴏʀ: {e} ")
         
-@jarvis.on_message(filters.command("morsedecode"))
+@Jarvis.on_message(filters.command("morsedecode"))
 async def morse_de(bot, message):
     
     try:
@@ -58,7 +58,7 @@ async def morse_de(bot, message):
     except Exception as e:
         await message.reply_text(f"**ᴇʀʀᴏʀ: {e} ")
         
-@jarvis.on_message(filters.command(["encode"]))
+@Jarvis.on_message(filters.command(["encode"]))
 async def base_en(bot, message):
     
     try:
@@ -76,7 +76,7 @@ async def base_en(bot, message):
     except Exception as e:
         await message.reply_text(f"**ᴇʀʀᴏʀ: {e} ")
         
-@jarvis.on_message(filters.command(["decode"]))
+@Jarvis.on_message(filters.command(["decode"]))
 async def base_de(bot, message):
     
     try:
