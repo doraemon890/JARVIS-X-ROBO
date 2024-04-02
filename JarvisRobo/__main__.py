@@ -381,7 +381,7 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
              reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="sᴜᴩᴩᴏʀᴛ", callback_data="jarvis_support"),
+                        InlineKeyboardButton(text="sᴜᴩᴩᴏʀᴛ", callback_data="Jarvis_support"),
                         InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴩᴇʀ", url=f"tg://user?id={OWNER_ID}"),
                     ],
                     [
@@ -389,12 +389,12 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                         InlineKeyboardButton(text="ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back"),
                     ],
                     [
-                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="jarvis_back"),
+                        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="Jarvis_back"),
                     ],
                 ]
             ),
         )
-    elif query.data == "jarvis_support":
+    elif query.data == "Jarvis_support":
         query.message.edit_caption("๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ʜᴇʟᴩ ᴀɴᴅ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀ"
             f"\n\nɪғ ʏᴏᴜ ғᴏᴜɴᴅ ᴀɴʏ ʙᴜɢ ɪɴ {dispatcher.bot.first_name} ᴏʀ ɪғ ʏᴏᴜ ᴡᴀɴɴᴀ ɢɪᴠᴇ ғᴇᴇᴅʙᴀᴄᴋ ᴀʙᴏᴜᴛ ᴛʜᴇ {dispatcher.bot.first_name}, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴀᴛ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ.",
             parse_mode=ParseMode.MARKDOWN,
@@ -422,9 +422,10 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                 ]
             ),
         )
-    elif query.data == "jarvis_back":
+    elif query.data == "Jarvis_back":
         first_name = update.effective_user.first_name 
-        query.message.edit_caption(PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
+        query.message.edit_caption(
+            PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,sql.num_users(),sql.num_chats()),
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
             timeout=60,
@@ -480,7 +481,7 @@ def get_help(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_photo(HELP_IMG,
+            update.effective_message.reply_photo(START_IMG,
                 f"Contact me in PM to get help of {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -496,7 +497,7 @@ def get_help(update: Update, context: CallbackContext):
                 ),
             )
             return
-        update.effective_message.reply_photo(HELP_IMG,"» Wʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ?.",
+        update.effective_message.reply_photo(START_IMG,"» Wʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ?.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -529,7 +530,7 @@ def get_help(update: Update, context: CallbackContext):
             text,
             InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="help_back")]
+                    [InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data="help_back"),]
                 ]
             ),
         )
