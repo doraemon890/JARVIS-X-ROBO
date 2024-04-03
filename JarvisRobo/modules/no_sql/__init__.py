@@ -10,7 +10,7 @@ try:
     client = MongoClient(MONGO_DB_URI)
 except PyMongoError:
     exiter(1)
-main_db = client["JARVIS_ROBOT"]
+main_db = client["JARVIS_ROBO"]
 
 
 JarvisXdb = main_db
