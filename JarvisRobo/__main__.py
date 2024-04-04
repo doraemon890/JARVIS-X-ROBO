@@ -79,7 +79,7 @@ PM_START_TEX = """
 PM_START_TEXT = """ 
 *ʜᴇʏ* {}  
 
-๏ *๏ ᴛʜɪs ɪs* {} !
+*๏ ᴛʜɪs ɪs* {} !
 ➻ ᴛʜᴇ ᴍᴏsᴛ ᴩᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴩ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ  ᴡɪᴛʜ sᴏᴍᴇ ᴀᴡᴇsᴏᴍᴇ ᴀɴᴅ ᴜsᴇғᴜʟ ғᴇᴀᴛᴜʀᴇs.
 ─────────────────
    *➻ ᴜsᴇʀs »* {}
@@ -211,23 +211,16 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            
-            x = update.effective_message.reply_sticker(
+            update.effective_message.reply_sticker(
                 "CAACAgEAAx0Cfbdm0QACATNmC-1-nl8Unb8cLRS-8qfLllewvwACPwMAAtKbsEQsyzfIkYLVGx4E"
             )
-            
-            # Introduce a 2.5-second sleep
-            time.sleep(1.5)
-            
-            x.delete()
-            
             usr = update.effective_user
             lol = update.effective_message.reply_text(
                 PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
             )
             time.sleep(1.25)
             lol.edit_text("💻")
-            time.sleep(0.5)
+            time.sleep(1.0)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.5)
             lol.delete()
