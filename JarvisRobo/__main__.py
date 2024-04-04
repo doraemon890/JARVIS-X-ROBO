@@ -1,3 +1,4 @@
+# <============================================== IMPORTS =========================================================>
 import importlib
 import re
 import time
@@ -46,6 +47,9 @@ from JarvisRobo.modules import ALL_MODULES
 from JarvisRobo.modules.helper_funcs.chat_status import is_user_admin
 from JarvisRobo.modules.helper_funcs.misc import paginate_modules
 
+# <=======================================================================================================>
+
+# <============================================== FUNCTIONS =========================================================>
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -70,7 +74,9 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
 
     return ping_time
-    
+
+# <============================================== STRINGS =========================================================>
+
 PM_START_TEX = """
 ʜᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . . . 
 """
@@ -111,12 +117,16 @@ buttons = [
 HELP_STRINGS = f"""
 » {BOT_NAME}  ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ ᴀʙᴏᴜᴛ sᴘᴇᴄɪғɪᴄs ᴄᴏᴍᴍᴀɴᴅ"""
 
+
 # <============================================================= NO USE BEGIN ========================================================================>
 DONATE_STRING = f"""ʜᴇʏ ʙᴀʙʏ,
   ʜᴀᴩᴩʏ ᴛᴏ ʜᴇᴀʀ ᴛʜᴀᴛ ʏᴏᴜ ᴡᴀɴɴᴀ ᴅᴏɴᴀᴛᴇ.
 
 ʏᴏᴜ ᴄᴀɴ ᴅɪʀᴇᴄᴛʟʏ ᴄᴏɴᴛᴀᴄᴛ ᴍʏ ᴅᴇᴠᴇʟᴏᴘᴇʀ @JARVIS\_V2 ғᴏʀ ᴅᴏɴᴀᴛɪɴɢ ᴏʀ ʏᴏᴜ ᴄᴀɴ ᴠɪsɪᴛ ᴍʏ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ @Chatting\_2024 ᴀɴᴅ ᴀsᴋ ᴛʜᴇʀᴇ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪᴏɴ."""
 # <============================================================= NO USE END ========================================================================>
+
+
+# <============================================== STRINGS END =========================================================>
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -164,6 +174,7 @@ for module_name in ALL_MODULES:
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
 
+
 # do not async
 def send_help(chat_id, text, keyboard=None):
     if not keyboard:
@@ -175,6 +186,7 @@ def send_help(chat_id, text, keyboard=None):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=keyboard,
     )
+# <============================================== START =========================================================>
 
 def start(update: Update, context: CallbackContext):
     args = context.args
@@ -239,6 +251,7 @@ def start(update: Update, context: CallbackContext):
             parse_mode=ParseMode.HTML,
         )
 
+# <============================================== START END =========================================================>
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -297,6 +310,7 @@ def error_callback(update: Update, context: CallbackContext):
         print(error)
         # handle all other telegram related errors
 
+# <============================================== HELP =========================================================>
 
 def help_button(update, context):
     query = update.callback_query
@@ -358,7 +372,9 @@ def help_button(update, context):
 
     except BadRequest:
         pass
+# <============================================== HELP CLOSE =========================================================>
 
+# <============================================== ABOUT CALLBACK =========================================================>
 
 def Jarvis_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
@@ -434,6 +450,8 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
             timeout=60,
         )
         
+# <============================================== ABOUT CALLBACK END =========================================================>
+
 # <============================================================= NO USE BEGIN ========================================================================>
 
 def JarvisRobo_Main_Callback(update: Update, context: CallbackContext):
@@ -586,7 +604,9 @@ Yᴏᴜ ᴄᴀɴ ʜᴇʟᴘ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴍᴇɴᴛ ᴡɪᴛʜ 
             )  
         
 # <============================================================= NO USE END ========================================================================>
-        
+
+# <============================================== SOURCE CALLBACK =========================================================>
+
 def Source_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
     if query.data == "source_":
@@ -628,6 +648,7 @@ def Source_about_callback(update: Update, context: CallbackContext):
             timeout=60,
             
         )
+# <============================================== SOURCE CALLBACK END =========================================================>
 
 # <============================================================= NO USE BEGIN ========================================================================>
         
@@ -780,6 +801,8 @@ c ꜱᴛᴀɴᴅꜱ ꜰᴏʀ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ.
 
 # <============================================================= NO USE END ========================================================================>
 
+# <============================================== HELP MENU  =========================================================>
+
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
@@ -845,6 +868,9 @@ def get_help(update: Update, context: CallbackContext):
     else:
         send_help(chat.id, HELP_STRINGS)
 
+# <============================================== HELP MENU CLOSE =========================================================>
+
+# <============================================== SETTINGS =========================================================>
 
 def send_settings(chat_id, user_id, user=False):
     if user:
@@ -996,6 +1022,9 @@ def get_settings(update: Update, context: CallbackContext):
     else:
         send_settings(chat.id, user.id, True)
 
+# <============================================== SETTINGS MENU CLOSED =========================================================>
+
+# <============================================== NOT USED =========================================================>
 
 def donate(update: Update, context: CallbackContext):
     user = update.effective_message.from_user
@@ -1030,7 +1059,9 @@ def donate(update: Update, context: CallbackContext):
             update.effective_message.reply_text(
                 "ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ."
             )
+# <============================================== NOT USED END=========================================================>
 
+# <============================================== CHAT MIGRATION USED =========================================================>
 
 def migrate_chats(update: Update, context: CallbackContext):
     msg = update.effective_message  # type: Optional[Message]
@@ -1049,7 +1080,10 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     LOGGER.info("Successfully migrated!")
     raise DispatcherHandlerStop
+    
+# <========================================== CHAT END =============================================================>
 
+# <=================================================== MAIN ====================================================>
 
 def main():
     global x
@@ -1139,3 +1173,4 @@ if __name__ == "__main__":
     telethn.start(bot_token=TOKEN)
     pbot.start()
     main()
+# <==================================================== END ===================================================>
