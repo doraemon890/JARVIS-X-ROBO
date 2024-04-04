@@ -85,7 +85,6 @@ PM_START_TEXT = """
    *➻ ᴜsᴇʀs »* {}
    *➻ ᴄʜᴀᴛs »* {}
 ─────────────────
-
 *๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.*
 """
 
@@ -218,7 +217,7 @@ def start(update: Update, context: CallbackContext):
             )
             
             # Introduce a 2.5-second sleep
-            time.sleep(2.0)
+            time.sleep(1.5)
             
             x.delete()
             
@@ -229,7 +228,7 @@ def start(update: Update, context: CallbackContext):
             time.sleep(1.25)
             lol.edit_text("💻")
             time.sleep(0.5)
-            lol.edit_text("_ꜱᴛᴀʀᴛɪɴɢ_... ")
+            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.5)
             lol.delete()
             
