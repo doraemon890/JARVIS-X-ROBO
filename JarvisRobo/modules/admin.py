@@ -899,10 +899,10 @@ User Commands:
 » /admincache: Force refresh the admins list.
 » /del: deletes the message you replied to.
 » /purge: deletes all messages between this and the replied to message.
-» /setgtitle <text>*:* set group title.
-» /setgpic : reply to an image to set as group photo.
-» /setdesc : Set group description.
-» /setsticker : Set group sticker.
+» /setgtitle <text>: set group title.
+» /setgpic: reply to an image to set as group photo.
+» /setdesc: Set group description.
+» /setsticker: Set group sticker.
 """
 
 
