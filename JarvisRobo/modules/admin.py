@@ -883,26 +883,26 @@ def adminlist(update, context):
 
 
 __help__ = """
-User Commands:
-» /adminlist: List of admins in the chat.
+ᴜsᴇʀ ᴄᴏᴍᴍᴀɴᴅs:
+» /adminlist: ʟɪsᴛ ᴏғ ᴀᴅᴍɪɴs ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
 
-» ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ Aᴅᴍɪɴs :
+» ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ ᴀᴅᴍɪɴs :
 
-» /pin: Silently pins the message replied to. Add `'loud'` or `'notify'` to give notifications to users.
-» /unpin: Unpins the currently pinned message.
-» /invitelink: Get an invite link of Group.
-» /promote: Promotes the user replied to.
-» /lowpromote: promotes the user replied to with half rights.
-» /fullpromote: promotes the user replied to with full rights.
-» /demote: Demotes the user replied to.
-» /title <Title here>: Sets a custom title for an admin that the bot promoted.
-» /admincache: Force refresh the admins list.
-» /del: deletes the message you replied to.
-» /purge: deletes all messages between this and the replied to message.
-» /setgtitle <text>: set group title.
-» /setgpic: reply to an image to set as group photo.
-» /setdesc: Set group description.
-» /setsticker: Set group sticker.
+» /pin: sɪʟᴇɴᴛʟʏ ᴘɪɴs ᴛʜᴇ ᴍᴇssᴀɢᴇ ʀᴇᴘʟɪᴇᴅ ᴛᴏ. ᴀᴅᴅ `'ʟᴏᴜᴅ'` ᴏʀ `'ɴᴏᴛɪғʏ'` ᴛᴏ ɢɪᴠᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴs ᴛᴏ ᴜsᴇʀs.
+» /unpin: ᴜɴᴘɪɴs ᴛʜᴇ ᴄᴜʀʀᴇɴᴛʟʏ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ.
+» /invitelink: ɢᴇᴛ ᴀɴ ɪɴᴠɪᴛᴇ ʟɪɴᴋ ᴏғ ɢʀᴏᴜᴘ.
+» /promote: ᴘʀᴏᴍᴏᴛᴇs ᴛʜᴇ ᴜsᴇʀ ʀᴇᴘʟɪᴇᴅ ᴛᴏ.
+» /lowpromote: ᴘʀᴏᴍᴏᴛᴇs ᴛʜᴇ ᴜsᴇʀ ʀᴇᴘʟɪᴇᴅ ᴛᴏ ᴡɪᴛʜ ʜᴀʟғ ʀɪɢʜᴛs.
+» /fullpromote: ᴘʀᴏᴍᴏᴛᴇs ᴛʜᴇ ᴜsᴇʀ ʀᴇᴘʟɪᴇᴅ ᴛᴏ ᴡɪᴛʜ ғᴜʟʟ ʀɪɢʜᴛs.
+» /demote: ᴅᴇᴍᴏᴛᴇs ᴛʜᴇ ᴜsᴇʀ ʀᴇᴘʟɪᴇᴅ ᴛᴏ.
+» /title: sᴇᴛs ᴀ ᴄᴜsᴛᴏᴍ ᴛɪᴛʟᴇ ғᴏʀ ᴀɴ ᴀᴅᴍɪɴ ᴛʜᴀᴛ ᴛʜᴇ ʙᴏᴛ ᴘʀᴏᴍᴏᴛᴇᴅ.
+» /admincache: ғᴏʀᴄᴇ ʀᴇғʀᴇsʜ ᴛʜᴇ ᴀᴅᴍɪɴs ʟɪsᴛ.
+» /del: ᴅᴇʟᴇᴛᴇs ᴛʜᴇ ᴍᴇssᴀɢᴇ ʏᴏᴜ ʀᴇᴘʟɪᴇᴅ ᴛᴏ.
+» /purge: ᴅᴇʟᴇᴛᴇs ᴀʟʟ ᴍᴇssᴀɢᴇs ʙᴇᴛᴡᴇᴇɴ ᴛʜɪs ᴀɴᴅ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴛᴏ ᴍᴇssᴀɢᴇ.
+» /setgtitle: sᴇᴛ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.
+» /setgpic: ʀᴇᴘʟʏ ᴛᴏ ᴀɴ ɪᴍᴀɢᴇ ᴛᴏ sᴇᴛ ᴀs ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ.
+» /setdesc: sᴇᴛ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.
+» /setsticker: sᴇᴛ ɢʀᴏᴜᴘ sᴛɪᴄᴋᴇʀ.
 """
 
 
