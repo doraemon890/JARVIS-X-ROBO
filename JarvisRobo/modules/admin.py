@@ -888,7 +888,7 @@ User Commands:
 
 » ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ Aᴅᴍɪɴs :
 
-» /pin: Silently pins the message replied to. Add 'loud' or 'notify' to give notifications to users.
+» /pin: Silently pins the message replied to. Add `'loud'` or `'notify'` to give notifications to users.
 » /unpin: Unpins the currently pinned message.
 » /invitelink: Get an invite link of Group.
 » /promote: Promotes the user replied to.
@@ -899,6 +899,10 @@ User Commands:
 » /admincache: Force refresh the admins list.
 » /del: deletes the message you replied to.
 » /purge: deletes all messages between this and the replied to message.
+» /setgtitle <text>*:* set group title.
+» /setgpic : reply to an image to set as group photo.
+» /setdesc : Set group description.
+» /setsticker : Set group sticker.
 """
 
 
