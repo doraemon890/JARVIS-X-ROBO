@@ -1141,7 +1141,7 @@ def main():
     music_callback_handler = CallbackQueryHandler(
         Music_about_callback, pattern=r"Music_",run_async=True
     )
-    JarvisRobo_main_handler = CallbackQueryHandler(
+    jarvisrobo_main_handler = CallbackQueryHandler(
         JarvisRobo_Main_Callback, pattern=r".*_help",run_async=True)
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
@@ -1154,7 +1154,7 @@ def main():
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(donate_handler)
-    dispatcher.add_handler(JarvisRobo_main_handler)
+    dispatcher.add_handler(jarvisrobo_main_handler)
     dispatcher.add_error_handler(error_callback)
     dispatcher.add_handler(source_callback_handler)
     LOGGER.info("Using long polling.")
