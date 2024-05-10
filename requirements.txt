@@ -1,6 +1,10 @@
 aiofiles==23.2.1
+dependabot/pip/apscheduler-3.10.4
+aiohttp==3.9.2
+apscheduler==3.10.4
 aiohttp==3.9.5
 apscheduler==3.6.3
+main
 asyncio==3.4.3
 beautifulsoup4==4.12.3
 bing_image_downloader==1.1.2
