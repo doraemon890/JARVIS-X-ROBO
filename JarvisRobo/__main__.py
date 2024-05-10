@@ -98,7 +98,7 @@ buttons = [
    [
         InlineKeyboardButton(
             text="✧ ᴀᴅᴅ ᴍᴇ ✧",
-            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+            url=f"https://t.me/{dispatcher.bot.username}?startgroup=true",
         ),
     ],
    [
@@ -106,7 +106,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="❄ ᴀʙᴏᴜᴛ ❄", callback_data="Jarvis_"),
-        InlineKeyboardButton(text="✨ sᴜᴩᴩᴏʀᴛ ✨", url=f"https://t.me/JARVIS_X_SUPPORT"),
+        InlineKeyboardButton(text="✨ sᴜᴩᴩᴏʀᴛ ✨", url=f"https://t.me/JARVIS_V_SUPPORT"),
     ],
    [
         InlineKeyboardButton(text="🥀 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🥀", url=f"tg://user?id={OWNER_ID}"),
@@ -424,7 +424,7 @@ def Jarvis_about_callback(update: Update, context: CallbackContext):
                             text="sᴜᴩᴩᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"
                         ),
                         InlineKeyboardButton(
-                            text="ᴜᴩᴅᴀᴛᴇs", url=f"https://t.me/JARVIS_X_SUPPORT"
+                            text="ᴜᴩᴅᴀᴛᴇs", url=f"https://t.me/JARVIS_V_SUPPORT"
                         ),
                     ],
                     [
@@ -1141,7 +1141,7 @@ def main():
     music_callback_handler = CallbackQueryHandler(
         Music_about_callback, pattern=r"Music_",run_async=True
     )
-    JarvisRobo_main_handler = CallbackQueryHandler(
+    jarvisrobo_main_handler = CallbackQueryHandler(
         JarvisRobo_Main_Callback, pattern=r".*_help",run_async=True)
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
@@ -1154,7 +1154,7 @@ def main():
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(donate_handler)
-    dispatcher.add_handler(JarvisRobo_main_handler)
+    dispatcher.add_handler(jarvisrobo_main_handler)
     dispatcher.add_error_handler(error_callback)
     dispatcher.add_handler(source_callback_handler)
     LOGGER.info("Using long polling.")
