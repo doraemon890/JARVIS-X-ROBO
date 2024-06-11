@@ -16,41 +16,6 @@ from JarvisRobo import pbot
 
 
 
-async def download_instagram_reels(url: str) -> str:
-    try:
-        response = requests.post(f"https://api.qewertyy.dev/download/instagram?url={url}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            if "content" in data and len(data["content"]) > 0:
-                video_url = data["content"][0]["url"]
-                return video_url
-            else:
-                return "No content found in the response."
-        else:
-            return f"Request failed with status code: {response.status_code}"
-    except Exception as e:
-        return f"Something went wrong: {e}"
-
-
-# Command to download an Instagram Reels video
-@pbot.on_message(filters.command("insta"))
-async def download_instagram_reels_command(client, message):
-    try:
-        if len(message.text.split(" ")) == 1:
-            await message.reply_text("Please provide an Instagram Reels link after the command.")
-            return
-        
-        url = message.text.split(" ", 1)[1]
-        video_url = await download_instagram_reels(url)
-        
-        if video_url.startswith("http"):
-            await message.reply_video(video_url)
-        else:
-            await message.reply_text(video_url)
-    except Exception as e:
-        await message.reply_text(f"Something went wrong: {e}")
-
 
 def get_file_extension_from_url(url):
     url_path = urlparse(url).path
