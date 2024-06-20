@@ -26,12 +26,12 @@ opener.addheaders = [("User-agent", USER_AGENT)]
 
 # Strings
 class STRINGS:
-    REPLY_TO_MEDIA = "ℹ️ Please reply to a message that contains one of the supported media types, such as a photo, sticker, or image file."
-    UNSUPPORTED_MEDIA_TYPE = "⚠️ <b>Unsupported media type!</b>\nℹ️ Please reply with a supported media type: image, sticker, or image file."
-    REQUESTING_API_SERVER = "📡 Requesting to <b>API Server</b>... 📶"
-    DOWNLOADING_MEDIA = "⏳ Downloading media..."
-    UPLOADING_TO_API_SERVER = "📡 Uploading media to <b>API Server</b>... 📶"
-    PARSING_RESULT = "💻 Parsing result..."
+    REPLY_TO_MEDIA = "`ℹ️ Please reply to a message that contains one of the supported media types, such as a photo, sticker, or image file.`"
+    UNSUPPORTED_MEDIA_TYPE = "`⚠️ <b>Unsupported media type!</b>\nℹ️ Please reply with a supported media type: image, sticker, or image file.`"
+    REQUESTING_API_SERVER = "` Requesting to <b>API Server</b>... 📶`"
+    DOWNLOADING_MEDIA = "` Downloading media...`"
+    UPLOADING_TO_API_SERVER = "`📡 Uploading media to <b>API Server</b>... 📶`"
+    PARSING_RESULT = "`💻 Parsing result...`"
     EXCEPTION_OCCURRED = "❌ <b>Exception occurred!</b>\n\n<b>Exception:</b> {}"
     RESULT = """
 🔤 <b>Query:</b> {query}
