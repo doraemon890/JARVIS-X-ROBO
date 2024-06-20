@@ -13,6 +13,7 @@ from PIL import Image
 from search_engine_parser import GoogleSearch
 
 from JarvisRobo import telethn as tbot
+from JarvisRobo import pbot
 from JarvisRobo.events import register
 
 opener = urllib.request.build_opener()
@@ -81,120 +82,117 @@ useragent = "Mozilla/5.0 (Linux; Android 11; SM-M017F Build/PPR1.180610.011; wv)
 opener.addheaders = [("User-agent", useragent)]
 
 
-@register(pattern=r"^/reverse|^/pp|^/grs(?: |$)(\d*)")
-async def okgoogle(img):
-    """For .reverse command, Google search images and stickers."""
-    if os.path.isfile("okgoogle.png"):
-        os.remove("okgoogle.png")
+import asyncio
+import uuid
 
-    message = await img.get_reply_message()
-    if message and message.media:
-        photo = io.BytesIO()
-        await tbot.download_media(message, photo)
-    else:
-        await img.reply("`Reply to photo or sticker fu*ker`")
-        return
+import httpx
+from pyrogram.enums import MessageMediaType
+from pyrogram.types import (
+    Message,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup
+)
 
-    if photo:
-        dev = await img.reply("`Processing...`")
+ENDPOINT = "https://sasta-api.vercel.app/googleImageSearch"
+httpx_client = httpx.AsyncClient(timeout=60)
+
+COMMANDS = [
+    "reverse",
+    "grs",
+    "gis",
+    "pp"
+]
+
+class STRINGS:
+    REPLY_TO_MEDIA = "ℹ️ Please reply to a message that contains one of the supported media types, such as a photo, sticker, or image file."
+    UNSUPPORTED_MEDIA_TYPE = "⚠️ <b>Unsupported media type!</b>\nℹ️ Please reply with a supported media type: image, sticker, or image file."
+    
+    REQUESTING_API_SERVER = "📡 Requesting to <b>API Server</b>... 📶"
+    
+    DOWNLOADING_MEDIA = "⏳ Downloading media..."
+    UPLOADING_TO_API_SERVER = "📡 Uploading media to <b>API Server</b>... 📶"
+    PARSING_RESULT = "💻 Parsing result..."
+    
+    EXCEPTION_OCCURRED = "❌ <b>Exception occurred!</b>\n\n<b>Exception:</b> {}"
+    
+    RESULT = """
+🔤 <b>Query:</b> {query}
+🔗 <b>Page Link:</b> <a href="{search_url}">Link</a>
+
+⌛️ <b>Time Taken:</b> <code>{time_taken}</code> ms.
+    """
+    OPEN_SEARCH_PAGE = "↗️ Open Search Page"
+
+@pbot.on_message(filters.command(COMMANDS))
+async def on_google_lens_search(client: Client, message: Message) -> None:
+    if len(message.command) > 1:
+        image_url = message.command[1]
+        params = {
+            "image_url": image_url
+        }
+        status_msg = await message.reply(STRINGS.REQUESTING_API_SERVER)
+        start_time = asyncio.get_event_loop().time()
+        response = await httpx_client.get(ENDPOINT, params=params)
+        
+    elif (reply := message.reply_to_message):
+        if reply.media not in (MessageMediaType.PHOTO, MessageMediaType.STICKER, MessageMediaType.DOCUMENT):
+            await message.reply(STRINGS.UNSUPPORTED_MEDIA_TYPE)
+            return
+        
+        status_msg = await message.reply(STRINGS.DOWNLOADING_MEDIA)
+        file_path = f"temp/{uuid.uuid4()}"
         try:
-            image = Image.open(photo)
-        except OSError:
-            await dev.edit("`Unsupported sexuality, most likely.`")
+            await reply.download(file_path)
+        except Exception as exc:
+            text = STRINGS.EXCEPTION_OCCURRED.format(exc)
+            await message.reply(text)
+            
+            try:
+                os.remove(file_path)
+            except FileNotFoundError:
+                pass
             return
-        name = "okgoogle.png"
-        image.save(name, "PNG")
-        image.close()
-        # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
-        searchUrl = "https://www.google.com/searchbyimage/upload"
-        multipart = {"encoded_image": (name, open(name, "rb")), "image_content": ""}
-        response = requests.post(searchUrl, files=multipart, allow_redirects=False)
-        fetchUrl = response.headers["Location"]
-
-        if response != 400:
-            await dev.edit(
-                "`Image successfully uploaded to Google. Maybe.`"
-                "\n`Parsing source now. Maybe.`"
-            )
-        else:
-            await dev.edit("`Google told me to fu*k off.`")
-            return
-
-        os.remove(name)
-        match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
-        guess = match["best_guess"]
-        imgspage = match["similar_images"]
-
-        if guess and imgspage:
-            await dev.edit(f"[{guess}]({fetchUrl})\n\n`Looking for this Image...`")
-        else:
-            await dev.edit("`Can't find this piece of shit.`")
-            return
-
-        if img.pattern_match.group(1):
-            lim = img.pattern_match.group(1)
-        else:
-            lim = 3
-        images = await scam(match, lim)
-        yeet = []
-        for i in images:
-            k = requests.get(i)
-            yeet.append(k.content)
+        
+        with open(file_path, "rb") as image_file:
+            start_time = asyncio.get_event_loop().time()
+            files = {"file": image_file}
+            await status_msg.edit(STRINGS.UPLOADING_TO_API_SERVER)
+            response = await httpx_client.post(ENDPOINT, files=files)
+        
         try:
-            await tbot.send_file(
-                entity=await tbot.get_input_entity(img.chat_id),
-                file=yeet,
-                reply_to=img,
-            )
-        except TypeError:
+            os.remove(file_path)
+        except FileNotFoundError:
             pass
-        await dev.edit(
-            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
-        )
-
-
-async def ParseSauce(googleurl):
-    """Parse/Scrape the HTML code for the info we want."""
-
-    source = opener.open(googleurl).read()
-    soup = BeautifulSoup(source, "html.parser")
-
-    results = {"similar_images": "", "best_guess": ""}
-
-    try:
-        for similar_image in soup.findAll("input", {"class": "gLFyf"}):
-            url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
-                similar_image.get("value")
-            )
-            results["similar_images"] = url
-    except BaseException:
-        pass
-
-    for best_guess in soup.findAll("div", attrs={"class": "r5a77d"}):
-        results["best_guess"] = best_guess.get_text()
-
-    return results
-
-
-async def scam(results, lim):
-
-    single = opener.open(results["similar_images"]).read()
-    decoded = single.decode("utf-8")
-
-    imglinks = []
-    counter = 0
-
-    pattern = r"^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$"
-    oboi = re.findall(pattern, decoded, re.I | re.M)
-
-    for imglink in oboi:
-        counter += 1
-        if counter < int(lim):
-            imglinks.append(imglink)
-        else:
-            break
-
-    return imglinks
+    
+    if response.status_code == 404:
+        text = STRINGS.EXCEPTION_OCCURRED.format(response.json()["error"])
+        await message.reply(text)
+        await status_msg.delete()
+        return
+    elif response.status_code != 200:
+        text = STRINGS.EXCEPTION_OCCURRED.format(response.text)
+        await message.reply(text)
+        await status_msg.delete()
+        return
+    
+    await status_msg.edit(STRINGS.PARSING_RESULT)
+    response_json = response.json()
+    query = response_json["query"]
+    search_url = response_json["search_url"]
+    
+    end_time = asyncio.get_event_loop().time() - start_time
+    time_taken = "{:.2f}".format(end_time)
+    
+    text = STRINGS.RESULT.format(
+        query=f"<code>{query}</code>" if query else "<i>Name not found</i>",
+        search_url=search_url,
+        time_taken=time_taken
+    )
+    buttons = [
+        [InlineKeyboardButton(STRINGS.OPEN_SEARCH_PAGE, url=search_url)]
+    ]
+    await message.reply(text, disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+    await status_msg.delete()
 
 
 @register(pattern="^/app (.*)")
