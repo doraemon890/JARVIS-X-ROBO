@@ -549,7 +549,7 @@ __help__ = f"""
 *ʙʀᴏᴀᴅᴄᴀsᴛ: (ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ)*
 *ɴᴏᴛᴇ:* ᴛʜɪs sᴜᴘᴘᴏʀᴛs ʙᴀsɪᴄ ᴍᴀʀᴋᴅᴏᴡɴ
  ❍ /broadcastall *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴇᴠᴇʀʏᴡʜᴇʀᴇ
- ❍ broadcastusers *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs
+ ❍ /broadcastusers *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ᴜsᴇʀs
  ❍ /broadcastgroups *:* ʙʀᴏᴀᴅᴄᴀsᴛs ᴛᴏᴏ ᴀʟʟ ɢʀᴏᴜᴘs
 
 
