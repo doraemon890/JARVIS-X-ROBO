@@ -28,7 +28,7 @@ numpy<2.0.0
 opencv-python-headless
 pillow==10.3.0
 pretty_errors==1.2.25
-psutil==5.9.8
+psutil==6.0.0
 psycopg2-binary==2.9.9
 pydictionary==2.0.1
 pykeyboard==0.1.5
